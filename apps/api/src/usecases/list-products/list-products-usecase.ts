@@ -11,14 +11,13 @@ export class ListProductsUseCase {
   ) {}
 
   async execute(): Promise<Product[]> {
-    console.log('CacheService is', this.cache);
-    console.log('Repository is:', this.repo);
-    
     const cached = await this.cache.get<Product[]>('products');
+
     if (cached) return cached;
 
     const products = await this.repo.findAll();
-    await this.cache.set('products', products, 60);
+
+    await this.cache.set('products', products);
 
     return products;
   }
