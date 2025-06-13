@@ -6,15 +6,9 @@ import { ProductModule } from './modules/product.module';
 import { config } from './config';
 import { RedisModule } from './modules/redis.module';
 
-require('dotenv').config();
-
 @Module({
-  imports: [
-    MongooseModule.forRoot(config.DB.url),
-    ProductModule,
-    RedisModule,
-  ],
+  imports: [MongooseModule.forRoot(config.DB.url), ProductModule, RedisModule],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
 export class AppModule {}
