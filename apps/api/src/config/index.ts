@@ -1,14 +1,15 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const environment = process.env.ENVIRONMENT;
 
 export const config = {
-    DEV: environment === 'dev',
-    PROD: environment === 'prod',
+  DEV: environment === 'dev',
+  PROD: environment === 'prod',
 
-    PROJECT_NAME: ' ProductSystemApi',
+  PROJECT_NAME: ' ProductSystemApi',
 
-    REDIS: {
+  REDIS: {
     HOST: process.env.REDIS_HOST ?? 'localhost',
     PORT: Number(process.env.REDIS_PORT ?? 18961),
     USER_NAME: process.env.REDIS_USERNAME ?? '',
@@ -16,6 +17,6 @@ export const config = {
   },
 
   DB: {
-    url: process.env.DATABASE_URL ?? ''
-  }
-}
+    url: process.env.DATABASE_URL ?? '',
+  },
+};
