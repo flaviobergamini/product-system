@@ -1,10 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import ProductListPage from './presentation/pages/product-list/product-list'
+import HeaderComponent from './presentation/components/header'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <HeaderComponent />
+    <ProductListPage />
   </StrictMode>,
 )
