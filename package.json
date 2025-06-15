@@ -20,9 +20,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "react-router-dom": "^7.6.2",
-    "socket.io-client": "^4.8.1"
-  }
+  ]
 }
