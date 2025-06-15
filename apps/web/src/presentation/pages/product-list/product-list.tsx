@@ -51,11 +51,12 @@ function ProductListPage() {
   }, []);
 
   const handleSearch = () => {
+    const normalizedInput = inputValue.trim().toLowerCase();
 
-    if (inputValue !== category) {
+    if (normalizedInput !== category) {
       setProducts([]);
       setPage(1);
-      setCategory(inputValue);
+      setCategory(normalizedInput);
     }
   };
 

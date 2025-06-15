@@ -5,6 +5,10 @@ export class AddProductUseCase {
   constructor(private productService: ProductHttpService) {}
 
   async execute(data: ProductRequestModel) {
+    if (data.category !== null || data.category !== undefined) {
+      data.category = data.category.trim().toLowerCase();
+    }
+    
     return await this.productService.create(data);
   }
 }
