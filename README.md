@@ -39,6 +39,7 @@ A API possui algumas rotas, ela não oferece documentação swagger:
 - [MongoDB Atlas](https://www.mongodb.com/atlas)
 - [Redis Cloud](https://redis.io/cloud/)
 - [AMRITB - para testar o Web Socket](https://amritb.github.io/socketio-client-tool/)
+- [Render - nuvem escolhida para deploy](https://render.com/)
 
 Observações: O projeto funciona sob o NodeJS, procure instalar uma versão igual ou superior a 20, no ambiente usado para desenvolvimento foi usado a versão 20.14. Para o editor de texto, foi sugerido o VSCode, mas pode usar outros como o Sublime.
 
@@ -91,7 +92,14 @@ npm run dev
 ![image](https://github.com/user-attachments/assets/9bac3d37-54db-4bed-99aa-ee0d24146f9d)
 ![image](https://github.com/user-attachments/assets/c4b902e3-4b0c-4db2-aa5f-100a526e9537)
 
+- O deploy no Render é feito de maneira automática a cada alteração por commit ou merge na branch main. Para esse servidor, é dispensado o uso das pipelines tradicionais, pois ele verifica o repositório diretamente.
+- Apesar de ser um único projeto, a API e o Web site tiveram que ser publicados separadamente pois o Render não suporta múltiplas portas:
+![image](https://github.com/user-attachments/assets/54261f37-f712-4095-82b1-94148221a1b2)
 
+-Os logs dos dois serviços podem ser verificados na opção Logs dentro do menu lateral esquerdo quando entra no serviço: 
+![image](https://github.com/user-attachments/assets/bf009f81-2b39-4c14-be9b-0d0a8adbe18f)
+
+ 
 ## :question: Dúvidas
 Envie um email ao desenvolvedor: fhmbergamini@hotmail.com
 
