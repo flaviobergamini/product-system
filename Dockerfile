@@ -34,4 +34,4 @@ EXPOSE 3000 5173
 RUN npm install -g concurrently
 
 # Inicia API (NestJS) + Frontend (Vite Preview)
-CMD concurrently "npm run --prefix apps/api start:prod" "npm run --prefix apps/web preview -- --port 5173 --host"
+CMD concurrently "npm run --prefix apps/api start:prod" "npm run --prefix apps/web preview -- --port 5173 --host 0.0.0.0"
