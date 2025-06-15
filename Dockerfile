@@ -25,7 +25,7 @@ COPY --from=builder /app .
 RUN cd apps/api && npm install --omit=dev
 
 # Instala dependências de preview do frontend
-RUN cd apps/web && npm install
+RUN cd apps/web && npm install --omit=dev
 
 # Instala `serve` para servir frontend em produção
 RUN npm install -g serve
