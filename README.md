@@ -1,84 +1,100 @@
-# Turborepo starter
+# Site de cadastro e consulta de produtos
 
-This Turborepo starter is maintained by the Turborepo core team.
+![image](https://github.com/user-attachments/assets/a4f98bb0-6d5e-4478-958c-3949fa07f602)
 
-## Using this example
+### :books: Descrição
+<p>Projeto de site fullstack desenvolvido com o Turborepo com os subprojetos de API e web site criados usando os frameworks NestJS e React. O framework de estilização é o Tailwind CSS e a linguagem de programação de todo o projeto é o TypeScript</p>
+<p>Este projeto consiste em cadastrar produtos no banco de dados MongoDB e listar os produtos. No Backend, no momento do cadastro, existem rotinas para atualização de cache no banco de dados Redis e disparo de web socket para notificar o frontend de que um novo produto foi cadastrado. A listagem de produtos leva como prioridade o retorno dos produtos pela cache do Redis, caso ela esteja vazia, os produtos são buscados no MongoDB e a cache é preenchida. No frontend, é possível buscar por categoria, fazendo as devidas chamadas no backend, usar o scroll infinito na página para evitar o carregamento de todos os produtos e encher a memória RAM do dispositivo que esteja acessando o site.</p>
+<p>Ao clicar sobre algum card de universidade, um modal é exibido com maiores informações.</p>
 
-Run the following command:
 
-```sh
-npx create-turbo@latest
+![image](https://github.com/user-attachments/assets/07f1774c-5ed8-443d-ae37-074d7e0d50c7)
+
+
+### :hammer_and_wrench: Instalação e Execução
+Para acessar o site, basta clicar no redirecionamento abaixo. Observação: Por estar hospedado em servidor gratuito, o primeiro acesso é mais lento pelo fato da máquina estar inativa.
+- [Acesse o site](https://product-system-fhmb-web.onrender.com/)
+  
+A API possui algumas rotas, ela não oferece documentação swagger:
+- GET Lista todos os produtos: https://product-system-fhmb.onrender.com/api/products/list
+- GET Lista produtos por categoria: https://product-system-fhmb.onrender.com/api/products/list?category=computador
+- GET Lista paginada de produtos: https://product-system-fhmb.onrender.com/api/products/list?page=1&limit=10
+- GET Lista paginada de produtos por categoria: https://product-system-fhmb.onrender.com/api/products/list?page=1&limit=10&category=computador
+- POST Cadastra produto: https://product-system-fhmb.onrender.com/api/products/add
+```
+  curl --location 'https://product-system-fhmb.onrender.com/api/products/add' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Apple 2b",
+    "category": "computador",
+    "quantity": 1,
+    "price": 1000.79,
+    "description": "Computador da Apple lançado em 1982"
+}'
 ```
 
-## What's inside?
+#### Preparação do ambiente de desenvolvimento
+- [NodeJS](https://nodejs.org/en/download)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [MongoDB Atlas](https://www.mongodb.com/atlas)
+- [Redis Cloud](https://redis.io/cloud/)
+- [AMRITB - para testar o Web Socket](https://amritb.github.io/socketio-client-tool/)
 
-This Turborepo includes the following packages/apps:
+Observações: O projeto funciona sob o NodeJS, procure instalar uma versão igual ou superior a 20, no ambiente usado para desenvolvimento foi usado a versão 20.14. Para o editor de texto, foi sugerido o VSCode, mas pode usar outros como o Sublime.
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
+Clone o repositório em seu computador para poder acessar o projeto:
 ```
-cd my-turborepo
-pnpm build
+https://github.com/flaviobergamini/product-system.git
+```
+Para acessar o repositório clonado usando o terminal, digite: 
+```
+cd product-system
+```
+Antes de executar o projeto, é necessário baixar todas as dependências (Turborepo, NestJS e React), para isso execute o comando abaixo na raiz do projeto, depois nas pastas apps/api e apps/web:
+```
+npm install
 ```
 
-### Develop
-
-To develop all apps and packages, run the following command:
+O projeto segue basicamente a seguinte estrutura de pastas, sendo que qualquer subprojeto sempre deve ficar na pasta apps: 
 
 ```
-cd my-turborepo
-pnpm dev
+product-system/
+├─ apps/
+│  ├─ api/           ← NestJS
+│  └─ web/           ← React + Tailwind
+├─ packages/
+├─ README.md
+├─ package.json
+└─ turbo.json
 ```
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
+### :computer: Iniciando Projeto
+Antes de iniciar o projeto, crie os arquivos .env:
+- para a API, será necessário as credenciais para:
 ```
-cd my-turborepo
-npx turbo login
+DATABASE_URL=
+REDIS_HOST=
+REDIS_PORT=
+REDIS_USERNAME=
+REDIS_PASSWORD=
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+- para o web site, é necessário a URL da API:
 ```
-npx turbo link
+VITE_API_URL=
 ```
 
-## Useful Links
+- Para iniciar o projeto localmente, esteja pasta raiz do projeto "product-system", é necessário pois será executado o backend e frontend juntos
+```
+npm run dev
+```
+![image](https://github.com/user-attachments/assets/9bac3d37-54db-4bed-99aa-ee0d24146f9d)
+![image](https://github.com/user-attachments/assets/c4b902e3-4b0c-4db2-aa5f-100a526e9537)
 
-Learn more about the power of Turborepo:
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## :question: Dúvidas
+Envie um email ao desenvolvedor: fhmbergamini@hotmail.com
+
+## :gear: Autor
+
+* **Flávio Henrique Madureira Bergamini** - [Flávio](https://github.com/flaviobergamini)
