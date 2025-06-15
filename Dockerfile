@@ -27,11 +27,16 @@ RUN cd apps/api && npm install --omit=dev
 # Instala dependências de preview do frontend
 RUN cd apps/web && npm install --omit=dev
 
-# Expõe as portas do NestJS e Vite
-EXPOSE 3000 5173
+# Instala `serve` para servir frontend em produção
+RUN npm install -g serve
 
 # Instala concurrently para rodar ambos
 RUN npm install -g concurrently
 
+# Expõe as portas do NestJS e Vite
+EXPOSE 3000 5173
+
 # Inicia API (NestJS) + Frontend (Vite Preview)
-CMD concurrently "npm run --prefix apps/api start:prod" "npm run --prefix apps/web preview -- --port 5173 --host"
+CMD concurrently \
+  "npm run --prefix apps/api start:prod" \
+  "serve -s apps/web/dist -l 5173"
