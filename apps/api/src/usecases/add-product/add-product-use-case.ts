@@ -29,7 +29,7 @@ export class AddProductUseCase {
       const product = new Product(
         randomUUID(),
         name,
-        category,
+        category.trim().toLowerCase(),
         quantity,
         price,
         description,
