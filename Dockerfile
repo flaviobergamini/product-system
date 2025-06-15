@@ -25,7 +25,7 @@ COPY --from=builder /app .
 RUN cd apps/api && npm install --omit=dev
 
 # Instala dependências de preview do frontend
-RUN cd apps/web && npm install --omit=dev
+RUN cd apps/web && npm install
 
 # Expõe as portas do NestJS e Vite
 EXPOSE 3000 5173
