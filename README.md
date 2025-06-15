@@ -5,14 +5,14 @@
 ### :books: Descrição
 <p>Projeto de site fullstack desenvolvido com o Turborepo com os subprojetos de API e web site criados usando os frameworks NestJS e React. O framework de estilização é o Tailwind CSS e a linguagem de programação de todo o projeto é o TypeScript</p>
 <p>Este projeto consiste em cadastrar produtos no banco de dados MongoDB e listar os produtos. No Backend, no momento do cadastro, existem rotinas para atualização de cache no banco de dados Redis e disparo de web socket para notificar o frontend de que um novo produto foi cadastrado. A listagem de produtos leva como prioridade o retorno dos produtos pela cache do Redis, caso ela esteja vazia, os produtos são buscados no MongoDB e a cache é preenchida. No frontend, é possível buscar por categoria, fazendo as devidas chamadas no backend, usar o scroll infinito na página para evitar o carregamento de todos os produtos e encher a memória RAM do dispositivo que esteja acessando o site.</p>
-<p>Ao clicar sobre algum card de universidade, um modal é exibido com maiores informações.</p>
+<p>Ao clicar sobre algum card de produto, um modal é exibido com maiores informações.</p>
 
 
 ![image](https://github.com/user-attachments/assets/07f1774c-5ed8-443d-ae37-074d7e0d50c7)
 
 
 ### :hammer_and_wrench: Instalação e Execução
-Para acessar o site, basta clicar no redirecionamento abaixo. Observação: Por estar hospedado em servidor gratuito, o primeiro acesso é mais lento pelo fato da máquina estar inativa.
+Para acessar o site, basta clicar no redirecionamento abaixo. é válido ressaltar que pelo projeto estar hospedado em servidor gratuito, o primeiro acesso é mais lento pelo fato da máquina estar inativa.
 - [Acesse o site](https://product-system-fhmb-web.onrender.com/)
   
 A API possui algumas rotas, ela não oferece documentação swagger:
